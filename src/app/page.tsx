@@ -306,7 +306,7 @@ export default function Dashboard() {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-6">
             {/* Current Tickets */}
             <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col">
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center justify-between mb-3 pl-3">
                 <h3 className="text-sm font-medium text-gray-700">Current Tickets</h3>
                 <div className="w-7 h-7 rounded-md bg-gray-200 flex items-center justify-center">
                   <Ticket className="w-4 h-4 text-gray-500" />
@@ -328,7 +328,7 @@ export default function Dashboard() {
 
             {/* Daily Avg Resolution */}
             <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col">
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center justify-between mb-3 pl-3">
                 <h3 className="text-sm font-medium text-gray-700">Daily Avg. Resolution</h3>
                 <div className="w-7 h-7 rounded-md bg-gray-200 flex items-center justify-center">
                   <Zap className="w-4 h-4 text-gray-500" />
@@ -350,7 +350,7 @@ export default function Dashboard() {
 
             {/* SLA Compliance Rate */}
             <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col">
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center justify-between mb-3 pl-3">
                 <h3 className="text-sm font-medium text-gray-700">SLA Compliance Rate</h3>
                 <div className="w-7 h-7 rounded-md bg-gray-200 flex items-center justify-center">
                   <Timer className="w-4 h-4 text-gray-500" />
@@ -371,7 +371,7 @@ export default function Dashboard() {
             </div>
             {/* Latest Updates (right column, spans two rows on lg) */}
             <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-[28rem] sm:h-96 lg:h-full flex flex-col lg:row-span-2">
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center justify-between mb-3 pl-3">
                 <h3 className="text-sm font-medium text-gray-700">Latest Updates</h3>
                 <button className="p-2 rounded-md hover:bg-gray-200/60 text-gray-600">
                   <MoreHorizontal className="w-4 h-4" />
@@ -396,6 +396,7 @@ export default function Dashboard() {
                 </div>
 
                 <div className="text-sm text-gray-600 mb-2">8 new activities today</div>
+                <div className="border-t border-dashed border-gray-200 mb-3" />
 
                 <div className="relative flex-1 overflow-auto pr-1">
                   <div className="absolute left-4 top-0 bottom-0 border-l border-dashed border-gray-200" />
@@ -404,7 +405,6 @@ export default function Dashboard() {
                       <div key={index} className="grid grid-cols-[auto_1fr_auto] gap-3 items-start">
                         <div className={`relative z-10 w-8 h-8 rounded-full border flex items-center justify-center ${getActivityStyle(activity.type).bubbleBg} ${getActivityStyle(activity.type).bubbleBorder}`}>
                           <activity.icon className={`w-4 h-4 ${getActivityStyle(activity.type).icon}`} />
-                          <span className="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gray-300"></span>
                         </div>
                         <div className="min-w-0">
                           <div className="text-sm font-medium text-gray-900 truncate">{activity.type}</div>
@@ -420,9 +420,9 @@ export default function Dashboard() {
 
             {/* Ticket Volume Trend (left, below KPI cards) */}
             <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-[22rem] sm:h-96 lg:col-span-3 flex flex-col">
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center justify-between mb-3 pl-3">
                 <div className="flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-gray-600" />
+                  <Ticket className="w-4 h-4 text-gray-600" />
                   <h3 className="text-sm font-medium text-gray-700">Ticket Volume Trend</h3>
                 </div>
                 <button className="flex items-center gap-2 text-sm text-gray-700 border border-gray-200 rounded-md px-3 py-1.5 bg-white">
@@ -457,7 +457,7 @@ export default function Dashboard() {
 
           {/* SLA Monitoring Table */}
           <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm">
-            <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center justify-between mb-3 pl-3">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-md bg-gray-100 border border-gray-200 flex items-center justify-center">
                   <Clock className="w-4 h-4 text-gray-600" />
