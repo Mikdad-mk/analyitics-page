@@ -138,8 +138,8 @@ export default function Dashboard() {
         </div>
 
         {/* Navigation */}
-        <div className="flex-1 p-4">
-          <nav className="space-y-2">
+        <div className="flex-1 p-4 bg-gray-100">
+          <nav className="space-y-2 ">
             <h3 className="px-3 text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-2">Main Navigation</h3>
             <div className="bg-white text-gray-900 px-3 py-2 rounded-lg flex items-center space-x-2 border border-gray-200 shadow-sm">
               <Grid3X3 className="w-4 h-4" />
