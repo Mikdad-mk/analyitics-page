@@ -423,9 +423,9 @@ export default function Dashboard() {
                 </button>
               </div>
               <div className="bg-white rounded-xl border border-gray-200 p-3 flex-1 flex flex-col overflow-hidden">
-                <div className="mb-3">
+                <div className="mb-3 flex items-baseline gap-3 whitespace-nowrap">
                   <div className="text-3xl font-bold text-gray-900 tracking-tight">4,790</div>
-                  <div className="text-sm mt-1">
+                  <div className="text-sm">
                     <span className="text-emerald-600 font-semibold">+8%</span>
                     <span className="text-gray-500 ml-2">vs last week</span>
                   </div>
@@ -474,8 +474,8 @@ export default function Dashboard() {
                 </button>
               </div>
             </div>
-            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden p-3 ">
-              <div className="overflow-x-auto px-2 md:px-2 p-2">
+            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden pt-1 ">
+              <div className="overflow-x-auto px-1.5 md:px-1.5 pt-0.5 pb-1">
                   <table className="w-full border-separate border-spacing-0">
                     <thead className="bg-gray-100 text-gray-600 ">
                   <tr>
