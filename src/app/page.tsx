@@ -308,7 +308,7 @@ export default function Dashboard() {
             <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col">
               <div className="flex items-center justify-between mb-3 pl-3">
                 <h3 className="text-sm font-medium text-gray-700">Current Tickets</h3>
-                <div className="w-7 h-7 rounded-md bg-gray-200 flex items-center justify-center">
+                <div className="w-7 h-7 rounded-md flex items-center justify-center">
                   <Ticket className="w-4 h-4 text-gray-500" />
                 </div>
               </div>
@@ -330,7 +330,7 @@ export default function Dashboard() {
             <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col">
               <div className="flex items-center justify-between mb-3 pl-3">
                 <h3 className="text-sm font-medium text-gray-700">Daily Avg. Resolution</h3>
-                <div className="w-7 h-7 rounded-md bg-gray-200 flex items-center justify-center">
+                <div className="w-7 h-7 rounded-md flex items-center justify-center">
                   <Zap className="w-4 h-4 text-gray-500" />
                 </div>
               </div>
@@ -352,7 +352,7 @@ export default function Dashboard() {
             <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col">
               <div className="flex items-center justify-between mb-3 pl-3">
                 <h3 className="text-sm font-medium text-gray-700">SLA Compliance Rate</h3>
-                <div className="w-7 h-7 rounded-md bg-gray-200 flex items-center justify-center">
+                <div className="w-7 h-7 rounded-md flex items-center justify-center">
                   <Timer className="w-4 h-4 text-gray-500" />
                 </div>
               </div>
@@ -422,7 +422,7 @@ export default function Dashboard() {
             <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-[22rem] sm:h-96 lg:col-span-3 flex flex-col">
               <div className="flex items-center justify-between mb-3 pl-3">
                 <div className="flex items-center gap-2">
-                  <Ticket className="w-4 h-4 text-gray-600" />
+                  <Ticket className="w-4 h-4 text-gray-600 rotate-[-45deg]" />
                   <h3 className="text-sm font-medium text-gray-700">Ticket Volume Trend</h3>
                 </div>
                 <button className="flex items-center gap-2 text-sm text-gray-700 border border-gray-200 rounded-md px-3 py-1.5 bg-white">
