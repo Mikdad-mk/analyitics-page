@@ -26,9 +26,10 @@ import {
   Puzzle,
   ChevronRight,
   Zap,
-  Timer
+  Timer,
+  Bell
 } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, LineChart, Line } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, LineChart, Line, Cell } from 'recharts';
 
 const ticketVolumeData = [
   { day: 'Sun', tickets: 420 },
@@ -37,7 +38,14 @@ const ticketVolumeData = [
   { day: 'Wed', tickets: 650 },
   { day: 'Thu', tickets: 720 },
   { day: 'Fri', tickets: 680 },
-  { day: 'Sat', tickets: 550 }
+  { day: 'Sat', tickets: 550 },
+  { day: 'Sun', tickets: 460 },
+  { day: 'Mon', tickets: 600 },
+  { day: 'Tue', tickets: 610 },
+  { day: 'Wed', tickets: 670 },
+  { day: 'Thu', tickets: 740 },
+  { day: 'Fri', tickets: 690 },
+  { day: 'Sat', tickets: 570 }
 ];
 
 const kpiTrendData = [
@@ -61,6 +69,25 @@ const resolutionTrendData = [
   { value: 486 }
 ];
 
+function getActivityStyle(type: string) {
+  switch (type) {
+    case 'Ticket Updated':
+      return { bubbleBg: 'bg-blue-50', bubbleBorder: 'border-blue-200', icon: 'text-blue-600' };
+    case 'New Client Added':
+      return { bubbleBg: 'bg-emerald-50', bubbleBorder: 'border-emerald-200', icon: 'text-emerald-600' };
+    case 'Agent Reassigned':
+      return { bubbleBg: 'bg-purple-50', bubbleBorder: 'border-purple-200', icon: 'text-purple-600' };
+    case 'SLA Breach Risk':
+      return { bubbleBg: 'bg-red-50', bubbleBorder: 'border-red-200', icon: 'text-red-600' };
+    case 'Knowledge Base':
+      return { bubbleBg: 'bg-cyan-50', bubbleBorder: 'border-cyan-200', icon: 'text-cyan-700' };
+    case 'Customer Feedback':
+      return { bubbleBg: 'bg-amber-50', bubbleBorder: 'border-amber-200', icon: 'text-amber-600' };
+    default:
+      return { bubbleBg: 'bg-gray-50', bubbleBorder: 'border-gray-200', icon: 'text-gray-600' };
+  }
+}
+
 const activities = [
   { time: '11:20 AM', type: 'Ticket Updated', description: 'Ticket #2319 SLA updated', icon: FileText },
   { time: '11:15 AM', type: 'New Client Added', description: 'PT. Alpha Indonesia registered', icon: User },
@@ -81,9 +108,9 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
-      <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
+      <div className="w-64 bg-gray-50 border-r border-gray-200 flex flex-col">
         {/* Logo */}
-        <div className="p-6 border-b border-gray-200">
+        <div className="p-4 border-b border-gray-200">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
@@ -91,17 +118,19 @@ export default function Dashboard() {
               </div>
               <span className="text-xl font-semibold text-gray-900">Kravio</span>
             </div>
-            <Menu className="w-5 h-5 text-gray-600" />
+            <button className="p-2 rounded-lg hover:bg-gray-100 text-gray-600">
+              <Menu className="w-5 h-5" />
+            </button>
           </div>
         </div>
 
         {/* Search */}
         <div className="p-4 border-b border-gray-200">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
             <input
               type="text"
-              placeholder="Q Search anything"
+              placeholder="Search anything"
               className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-400">⌘K</div>
@@ -111,7 +140,8 @@ export default function Dashboard() {
         {/* Navigation */}
         <div className="flex-1 p-4">
           <nav className="space-y-2">
-            <div className="bg-blue-50 text-blue-700 px-3 py-2 rounded-lg flex items-center space-x-2">
+            <h3 className="px-3 text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-2">Main Navigation</h3>
+            <div className="bg-white text-gray-900 px-3 py-2 rounded-lg flex items-center space-x-2 border border-gray-200 shadow-sm">
               <Grid3X3 className="w-4 h-4" />
               <span className="font-medium">Overview</span>
             </div>
@@ -124,10 +154,10 @@ export default function Dashboard() {
                 </div>
                 <ChevronDown className="w-4 h-4" />
               </div>
-              <div className="ml-6 space-y-1">
-                <div className="px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded cursor-pointer">All / My Queue</div>
-                <div className="px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded cursor-pointer">SLA Breach Risk</div>
-                <div className="px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded cursor-pointer">Escalations</div>
+              <div className="ml-4 pl-3 border-l border-gray-200 space-y-1">
+                <div className="px-2 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded cursor-pointer">All / My Queue</div>
+                <div className="px-2 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded cursor-pointer">SLA Breach Risk</div>
+                <div className="px-2 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded cursor-pointer">Escalations</div>
               </div>
             </div>
 
@@ -164,7 +194,7 @@ export default function Dashboard() {
 
           {/* Analytics & Insights */}
           <div className="mt-8">
-            <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Analytics & Insights</h3>
+            <h3 className="px-3 text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-3">Analytics & Insights</h3>
             <nav className="space-y-1">
               <div className="px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer flex items-center space-x-2">
                 <BarChart3 className="w-4 h-4" />
@@ -187,7 +217,7 @@ export default function Dashboard() {
 
           {/* Support */}
           <div className="mt-8">
-            <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Support</h3>
+            <h3 className="px-3 text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-3">Support</h3>
             <nav className="space-y-1">
               <div className="px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer flex items-center space-x-2">
                 <MessageSquare className="w-4 h-4" />
@@ -206,12 +236,10 @@ export default function Dashboard() {
         </div>
 
         {/* User Profile */}
-        <div className="p-4 border-t border-gray-200">
-          <div className="flex items-center justify-between">
+        <div className="p-3 border-t border-gray-200">
+          <div className="flex items-center justify-between bg-white border border-gray-200 rounded-xl px-3 py-2 shadow-sm">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                <span className="text-white text-sm font-medium">AH</span>
-              </div>
+              <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-700 text-sm font-medium">AH</div>
               <div>
                 <div className="text-sm font-medium text-gray-900">Achmad Hakim</div>
                 <div className="text-xs text-gray-500">achmadhakim@gmail.com</div>
@@ -226,242 +254,277 @@ export default function Dashboard() {
       <div className="flex-1 flex flex-col">
         {/* Header */}
         <div className="bg-white border-b border-gray-200 px-6 py-4">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center space-x-2 text-sm text-gray-600">
-              <span>88</span>
-              <ChevronRight className="w-4 h-4" />
+          {/* Top row: breadcrumb + icons */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center text-sm text-gray-600">
+              <Grid3X3 className="w-4 h-4 mr-2" />
               <span>Overview</span>
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-4 h-4 mx-2" />
               <span className="text-gray-900 font-medium">Dashboard</span>
             </div>
-            <div className="flex items-center space-x-3">
-              <select className="px-3 py-1 border border-gray-200 rounded-md text-sm">
-                <option>Last week</option>
-              </select>
-              <button className="p-2 hover:bg-gray-100 rounded-lg">
-                <MoreHorizontal className="w-4 h-4 text-gray-600" />
+            <div className="flex items-center gap-2">
+              <button className="p-2 hover:bg-gray-100 rounded-lg text-gray-600">
+                <HelpCircle className="w-4 h-4" />
+              </button>
+              <button className="p-2 hover:bg-gray-100 rounded-lg text-gray-600">
+                <Bell className="w-4 h-4" />
               </button>
             </div>
           </div>
-          <h1 className="text-2xl font-semibold text-gray-900">Hello, Achmad Hakim 👋</h1>
-          <p className="text-gray-600 mt-1">Here are the latest insights from your customer interactions.</p>
+          {/* dotted divider */}
+          <div className="mt-3 border-t border-dashed border-gray-200" />
+          {/* Bottom row: title + controls */}
+          <div className="mt-3 flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-semibold text-gray-900">Hello, Achmad Hakim <span role="img" aria-label="wave">👋</span></h1>
+              <p className="text-gray-600 mt-1">Here are the latest insights from your customer interactions.</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <button className="flex items-center gap-2 text-sm text-gray-700 border border-gray-200 rounded-md px-3 py-2 bg-white">
+                <Calendar className="w-4 h-4 text-gray-500" />
+                <span>Last week</span>
+                <ChevronDown className="w-4 h-4 text-gray-500" />
+              </button>
+              <button className="p-2 hover:bg-gray-100 rounded-lg text-gray-600">
+                <MoreHorizontal className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Dashboard Content */}
         <div className="flex-1 p-6 space-y-6">
-          {/* KPI Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* KPI + Latest Updates + Chart (single responsive grid) */}
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
             {/* Current Tickets */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6 relative">
-              <div className="flex items-start justify-between mb-4">
-                <h3 className="text-sm font-medium text-gray-600">Current Tickets</h3>
-                <Ticket className="w-5 h-5 text-gray-400" />
-              </div>
-              <div className="flex items-end justify-between">
-                <div className="flex-1">
-                  <div className="text-3xl font-bold text-gray-900 mb-2">3,484</div>
-                  <div className="flex items-center text-sm">
-                    <span className="text-green-600 font-medium">+7.1%</span>
-                    <span className="text-gray-500 ml-2">vs. last week</span>
-                  </div>
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-4 shadow-sm flex flex-col">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-sm font-medium text-gray-700">Current Tickets</h3>
+                <div className="w-7 h-7 rounded-md bg-gray-200 flex items-center justify-center">
+                  <Ticket className="w-4 h-4 text-gray-500" />
                 </div>
-                <div className="w-16 h-12 ml-4">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={kpiTrendData}>
-                      <Line type="monotone" dataKey="value" stroke="#10b981" strokeWidth={2} dot={false} />
-                    </LineChart>
-                  </ResponsiveContainer>
+              </div>
+              <div className="bg-white rounded-xl border border-gray-200 p-4 mt-auto">
+                <div className="text-3xl font-bold text-gray-900 tracking-tight mb-3">3,484</div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center text-sm">
+                    <span className="text-emerald-600 font-semibold">+7.1%</span>
+                    <span className="text-gray-500 ml-2">vs last week</span>
+                  </div>
+                  <div className="w-24 h-10 flex items-center justify-end">
+                    <TrendingUp className="w-16 h-8 text-emerald-400" />
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Daily Avg Resolution */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6 relative">
-              <div className="flex items-start justify-between mb-4">
-                <h3 className="text-sm font-medium text-gray-600">Daily Avg. Resolution</h3>
-                <Zap className="w-5 h-5 text-gray-400" />
-              </div>
-              <div className="flex items-end justify-between">
-                <div className="flex-1">
-                  <div className="text-3xl font-bold text-gray-900 mb-2">486</div>
-                  <div className="flex items-center text-sm">
-                    <span className="text-green-600 font-medium">+2%</span>
-                    <span className="text-gray-500 ml-2">vs. last week</span>
-                  </div>
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-4 shadow-sm flex flex-col">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-sm font-medium text-gray-700">Daily Avg. Resolution</h3>
+                <div className="w-7 h-7 rounded-md bg-gray-200 flex items-center justify-center">
+                  <Zap className="w-4 h-4 text-gray-500" />
                 </div>
-                <div className="w-16 h-12 ml-4">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={resolutionTrendData}>
-                      <Line type="monotone" dataKey="value" stroke="#10b981" strokeWidth={2} dot={false} />
-                    </LineChart>
-                  </ResponsiveContainer>
+              </div>
+              <div className="bg-white rounded-xl border border-gray-200 p-4 mt-auto">
+                <div className="text-3xl font-bold text-gray-900 tracking-tight mb-3">486</div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center text-sm">
+                    <span className="text-emerald-600 font-semibold">+2%</span>
+                    <span className="text-gray-500 ml-2">vs last week</span>
+                  </div>
+                  <div className="w-24 h-10 flex items-center justify-end">
+                    <TrendingUp className="w-16 h-8 text-emerald-400" />
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* SLA Compliance Rate */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6 relative">
-              <div className="flex items-start justify-between mb-4">
-                <h3 className="text-sm font-medium text-gray-600">SLA Compliance Rate</h3>
-                <Timer className="w-5 h-5 text-gray-400" />
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-4 shadow-sm flex flex-col">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-sm font-medium text-gray-700">SLA Compliance Rate</h3>
+                <div className="w-7 h-7 rounded-md bg-gray-200 flex items-center justify-center">
+                  <Timer className="w-4 h-4 text-gray-500" />
+                </div>
               </div>
-              <div className="flex items-end justify-between">
-                <div className="flex-1">
-                  <div className="text-3xl font-bold text-gray-900 mb-2">92%</div>
+              <div className="bg-white rounded-xl border border-gray-200 p-4 mt-auto">
+                <div className="text-3xl font-bold text-gray-900 tracking-tight mb-3">92%</div>
+                <div className="flex items-center justify-between">
                   <div className="flex items-center text-sm">
-                    <span className="text-red-600 font-medium">-1.3%</span>
-                    <span className="text-gray-500 ml-2">vs. last week</span>
+                    <span className="text-red-600 font-semibold">-1.3%</span>
+                    <span className="text-gray-500 ml-2">vs last week</span>
+                  </div>
+                    <div className="w-24 h-10 flex items-center justify-end">
+                      <TrendingDown className="w-16 h-8 text-red-400" />
+                    </div>
+                </div>
+              </div>
+            </div>
+            {/* Latest Updates (right column, spans two rows on lg) */}
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-4 shadow-sm h-96 lg:h-full flex flex-col lg:row-span-2">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-sm font-medium text-gray-700">Latest Updates</h3>
+                <button className="p-2 rounded-md hover:bg-gray-200/60 text-gray-600">
+                  <MoreHorizontal className="w-4 h-4" />
+                </button>
+              </div>
+              <div className="bg-white rounded-xl border border-gray-200 p-4 flex-1 flex flex-col overflow-hidden">
+                <div className="flex items-center justify-between gap-3 mb-4">
+                  <div className="flex items-center bg-gray-100 rounded-lg p-1 shrink-0">
+                    <button className="px-3 py-1.5 rounded-md text-sm font-medium bg-white text-gray-900 shadow-sm">Today</button>
+                    <button className="px-3 py-1.5 rounded-md text-sm text-gray-600">Yesterday</button>
+                    <button className="px-3 py-1.5 rounded-md text-sm text-gray-600 hidden sm:inline">This week</button>
                   </div>
                 </div>
-                <div className="w-16 h-12 ml-4">
+
+                <div className="relative mb-3">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <input
+                    type="text"
+                    placeholder="Search activities"
+                    className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+
+                <div className="text-sm text-gray-600 mb-2">8 new activities today</div>
+
+                <div className="relative flex-1 overflow-auto pr-1">
+                  <div className="absolute left-4 top-0 bottom-0 border-l border-dashed border-gray-200" />
+                  <div className="space-y-4">
+                    {activities.map((activity, index) => (
+                      <div key={index} className="grid grid-cols-[auto_1fr_auto] gap-3 items-start">
+                        <div className={`relative z-10 w-8 h-8 rounded-full border flex items-center justify-center ${getActivityStyle(activity.type).bubbleBg} ${getActivityStyle(activity.type).bubbleBorder}`}>
+                          <activity.icon className={`w-4 h-4 ${getActivityStyle(activity.type).icon}`} />
+                          <span className="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-gray-300"></span>
+                        </div>
+                        <div className="min-w-0">
+                          <div className="text-sm font-medium text-gray-900 truncate">{activity.type}</div>
+                          <p className="text-sm text-gray-600 mt-1 truncate">{activity.description}</p>
+                        </div>
+                        <div className="text-xs text-gray-500 whitespace-nowrap mt-0.5">{activity.time}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Ticket Volume Trend (left, below KPI cards) */}
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-4 shadow-sm relative h-96 lg:col-span-3">
+              <div className="flex items-center justify-between relative z-10 mb-0">
+                <div className="flex items-center gap-2">
+                  <BarChart3 className="w-4 h-4 text-gray-600" />
+                  <h3 className="text-sm font-medium text-gray-700">Ticket Volume Trend</h3>
+                </div>
+                <button className="flex items-center gap-2 text-sm text-gray-700 border border-gray-200 rounded-md px-3 py-1.5 bg-white">
+                  <Calendar className="w-4 h-4 text-gray-500" />
+                  <span>Last week</span>
+                </button>
+              </div>
+              <div className="bg-white rounded-xl border border-gray-200 p-4 absolute left-4 right-4 bottom-4 top-14 flex flex-col overflow-hidden">
+                <div className="mb-4">
+                  <div className="text-3xl font-bold text-gray-900 tracking-tight">4,790</div>
+                  <div className="text-sm mt-1">
+                    <span className="text-emerald-600 font-semibold">+8%</span>
+                    <span className="text-gray-500 ml-2">vs last week</span>
+                  </div>
+                </div>
+                <div className="flex-1 min-h-0">
                   <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={slaTrendData}>
-                      <Line type="monotone" dataKey="value" stroke="#ef4444" strokeWidth={2} dot={false} />
-                    </LineChart>
+                    <BarChart data={ticketVolumeData} margin={{ right: 24 }}>
+                      <XAxis dataKey="day" axisLine={false} tickLine={false} interval={0} />
+                      <YAxis orientation="right" axisLine={false} tickLine={false} width={34} />
+                      <Bar dataKey="tickets" radius={[6, 6, 0, 0]}>
+                        {ticketVolumeData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={index === 5 ? '#111827' : '#E5E7EB'} />
+                        ))}
+                      </Bar>
+                    </BarChart>
                   </ResponsiveContainer>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Charts and Updates */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Ticket Volume Trend */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg font-semibold text-gray-900">Ticket Volume Trend</h3>
-                <div className="text-sm text-gray-600">
-                  <span className="font-medium">4,790</span> tickets
-                  <span className="text-green-600 ml-2">+8% vs. last week</span>
-                </div>
-              </div>
-              <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={ticketVolumeData}>
-                    <XAxis dataKey="day" axisLine={false} tickLine={false} />
-                    <YAxis axisLine={false} tickLine={false} />
-                    <Bar dataKey="tickets" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
-            {/* Latest Updates */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-gray-900">Latest Updates</h3>
-                <div className="flex space-x-1">
-                  <button className="px-3 py-1 bg-blue-100 text-blue-700 rounded-md text-sm font-medium">Today</button>
-                  <button className="px-3 py-1 text-gray-600 rounded-md text-sm">Yesterday</button>
-                  <button className="px-3 py-1 text-gray-600 rounded-md text-sm">This week</button>
-                </div>
-              </div>
-              
-              <div className="relative mb-4">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                <input
-                  type="text"
-                  placeholder="Q Search activities"
-                  className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-
-              <div className="text-sm text-gray-600 mb-4">8 new activities today</div>
-
-              <div className="space-y-4">
-                {activities.map((activity, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0">
-                      <activity.icon className="w-4 h-4 text-gray-600" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center space-x-2">
-                        <span className="text-sm font-medium text-gray-900">{activity.type}</span>
-                        <span className="text-xs text-gray-500">{activity.time}</span>
-                      </div>
-                      <p className="text-sm text-gray-600 mt-1">{activity.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
           {/* SLA Monitoring Table */}
-          <div className="bg-white rounded-lg border border-gray-200">
-            <div className="p-6 border-b border-gray-200">
-              <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold text-gray-900">SLA Monitoring</h3>
-                <div className="flex items-center space-x-3">
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                    <input
-                      type="text"
-                      placeholder="Q Ticket"
-                      className="pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
-                  <button className="flex items-center space-x-2 px-3 py-2 border border-gray-200 rounded-lg text-sm hover:bg-gray-50">
-                    <Filter className="w-4 h-4" />
-                    <span>Filter</span>
-                  </button>
-                  <button className="p-2 hover:bg-gray-100 rounded-lg">
-                    <MoreHorizontal className="w-4 h-4 text-gray-600" />
-                  </button>
+          <div className="bg-gray-100 rounded-xl border border-gray-200 p-4 shadow-sm">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <div className="w-7 h-7 rounded-md bg-gray-100 border border-gray-200 flex items-center justify-center">
+                  <Clock className="w-4 h-4 text-gray-600" />
                 </div>
+                <h3 className="text-sm font-medium text-gray-700">SLA Monitoring</h3>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <input
+                    type="text"
+                    placeholder="Ticket"
+                    className="pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                  />
+                </div>
+                <button className="flex items-center gap-2 px-3 py-2 border border-gray-200 rounded-lg text-sm hover:bg-gray-50 bg-white">
+                  <Filter className="w-4 h-4 text-gray-700" />
+                  <span>Filter</span>
+                </button>
+                <button className="p-2 hover:bg-gray-200/60 rounded-lg text-gray-600">
+                  <MoreHorizontal className="w-4 h-4" />
+                </button>
               </div>
             </div>
-
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-gray-50">
+            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden ">
+              <div className="overflow-x-auto px-2 md:px-2 p-2  ">
+                  <table className="w-full border-separate border-spacing-0">
+                    <thead className="bg-gray-100 text-gray-600 ">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3.5 text-left text-xs font-medium uppercase tracking-wider rounded-l-lg">
                       <input type="checkbox" className="rounded border-gray-300" />
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3.5 text-left text-xs font-medium uppercase tracking-wider">
                       <div className="flex items-center space-x-1">
                         <span>Ticket ID</span>
                         <ChevronDown className="w-3 h-3" />
                       </div>
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3.5 text-left text-xs font-medium uppercase tracking-wider">
                       <div className="flex items-center space-x-1">
                         <span>Subject</span>
                         <ChevronDown className="w-3 h-3" />
                       </div>
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3.5 text-left text-xs font-medium uppercase tracking-wider">
                       <div className="flex items-center space-x-1">
                         <span>Priority</span>
                         <ChevronDown className="w-3 h-3" />
                       </div>
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3.5 text-left text-xs font-medium uppercase tracking-wider">
                       <div className="flex items-center space-x-1">
                         <span>Assigned To</span>
                         <ChevronDown className="w-3 h-3" />
                       </div>
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3.5 text-left text-xs font-medium uppercase tracking-wider">
                       <div className="flex items-center space-x-1">
                         <span>Status</span>
                         <ChevronDown className="w-3 h-3" />
                       </div>
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3.5 text-left text-xs font-medium uppercase tracking-wider">
                       <div className="flex items-center space-x-1">
                         <span>Created Date</span>
                         <ChevronDown className="w-3 h-3" />
                       </div>
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3.5 text-left text-xs font-medium uppercase tracking-wider">
                       <div className="flex items-center space-x-1">
                         <span>SLA Due</span>
                         <ChevronDown className="w-3 h-3" />
                       </div>
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+                      <th className="px-6 py-3.5 text-left text-xs font-medium uppercase tracking-wider rounded-r-lg"></th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -529,6 +592,7 @@ export default function Dashboard() {
                   ))}
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         </div>
