@@ -236,8 +236,8 @@ export default function Dashboard() {
         </div>
 
         {/* User Profile */}
-        <div className="p-3 border-t border-gray-200 ">
-          <div className="flex items-center justify-between bg-white border border-gray-200 rounded-xl px-3 py-2 shadow-sm">
+        <div className="p-3  bg-gray-100 ">
+          <div className="flex items-center justify-between bg-white  rounded-xl px-3 py-2 shadow-sm">
             <div className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-700 text-sm font-medium">AH</div>
               <div>
@@ -297,84 +297,84 @@ export default function Dashboard() {
           {/* KPI + Latest Updates + Chart (single responsive grid) */}
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
             {/* Current Tickets */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-4 shadow-sm flex flex-col">
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-medium text-gray-700">Current Tickets</h3>
                 <div className="w-7 h-7 rounded-md bg-gray-200 flex items-center justify-center">
                   <Ticket className="w-4 h-4 text-gray-500" />
                 </div>
               </div>
-              <div className="bg-white rounded-xl border border-gray-200 p-4 mt-auto">
-                <div className="text-3xl font-bold text-gray-900 tracking-tight mb-3">3,484</div>
+              <div className="bg-white rounded-xl border border-gray-200 p-3 flex-1 flex flex-col justify-end">
+                <div className="text-2xl font-bold text-gray-900 tracking-tight mb-2">3,484</div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center text-sm">
                     <span className="text-emerald-600 font-semibold">+7.1%</span>
                     <span className="text-gray-500 ml-2">vs last week</span>
                   </div>
-                  <div className="w-24 h-10 flex items-center justify-end">
-                    <TrendingUp className="w-16 h-8 text-emerald-400" />
+                  <div className="w-20 h-8 flex items-center justify-end">
+                    <TrendingUp className="w-14 h-7 text-emerald-400" />
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Daily Avg Resolution */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-4 shadow-sm flex flex-col">
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-medium text-gray-700">Daily Avg. Resolution</h3>
                 <div className="w-7 h-7 rounded-md bg-gray-200 flex items-center justify-center">
                   <Zap className="w-4 h-4 text-gray-500" />
                 </div>
               </div>
-              <div className="bg-white rounded-xl border border-gray-200 p-4 mt-auto">
-                <div className="text-3xl font-bold text-gray-900 tracking-tight mb-3">486</div>
+              <div className="bg-white rounded-xl border border-gray-200 p-3 flex-1 flex flex-col justify-end">
+                <div className="text-2xl font-bold text-gray-900 tracking-tight mb-2">486</div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center text-sm">
                     <span className="text-emerald-600 font-semibold">+2%</span>
                     <span className="text-gray-500 ml-2">vs last week</span>
                   </div>
-                  <div className="w-24 h-10 flex items-center justify-end">
-                    <TrendingUp className="w-16 h-8 text-emerald-400" />
+                  <div className="w-20 h-8 flex items-center justify-end">
+                    <TrendingUp className="w-14 h-7 text-emerald-400" />
                   </div>
                 </div>
               </div>
             </div>
 
             {/* SLA Compliance Rate */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-4 shadow-sm flex flex-col">
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-medium text-gray-700">SLA Compliance Rate</h3>
                 <div className="w-7 h-7 rounded-md bg-gray-200 flex items-center justify-center">
                   <Timer className="w-4 h-4 text-gray-500" />
                 </div>
               </div>
-              <div className="bg-white rounded-xl border border-gray-200 p-4 mt-auto">
-                <div className="text-3xl font-bold text-gray-900 tracking-tight mb-3">92%</div>
+              <div className="bg-white rounded-xl border border-gray-200 p-3 flex-1 flex flex-col justify-end">
+                <div className="text-2xl font-bold text-gray-900 tracking-tight mb-2">92%</div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center text-sm">
                     <span className="text-red-600 font-semibold">-1.3%</span>
                     <span className="text-gray-500 ml-2">vs last week</span>
                   </div>
-                    <div className="w-24 h-10 flex items-center justify-end">
-                      <TrendingDown className="w-16 h-8 text-red-400" />
+                    <div className="w-20 h-8 flex items-center justify-end">
+                      <TrendingDown className="w-14 h-7 text-red-400" />
                     </div>
                 </div>
               </div>
             </div>
             {/* Latest Updates (right column, spans two rows on lg) */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-4 shadow-sm h-96 lg:h-full flex flex-col lg:row-span-2">
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-96 lg:h-full flex flex-col lg:row-span-2">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-medium text-gray-700">Latest Updates</h3>
                 <button className="p-2 rounded-md hover:bg-gray-200/60 text-gray-600">
                   <MoreHorizontal className="w-4 h-4" />
                 </button>
               </div>
-              <div className="bg-white rounded-xl border border-gray-200 p-4 flex-1 flex flex-col overflow-hidden">
-                <div className="flex items-center justify-between gap-3 mb-4">
-                  <div className="flex items-center bg-gray-100 rounded-lg p-1 shrink-0">
-                    <button className="px-3 py-1.5 rounded-md text-sm font-medium bg-white text-gray-900 shadow-sm">Today</button>
-                    <button className="px-3 py-1.5 rounded-md text-sm text-gray-600">Yesterday</button>
-                    <button className="px-3 py-1.5 rounded-md text-sm text-gray-600 hidden sm:inline">This week</button>
+              <div className="bg-white rounded-xl border border-gray-200 p-3 flex-1 flex flex-col overflow-hidden">
+                <div className="mb-4">
+                  <div className="grid grid-cols-3 gap-2 w-full">
+                    <button className="w-full px-3 py-1.5 rounded-md text-sm font-medium bg-gray-900 text-white shadow-sm">Today</button>
+                    <button className="w-full px-3 py-1.5 rounded-md text-sm bg-gray-900 text-white">Yesterday</button>
+                    <button className="w-full px-3 py-1.5 rounded-md text-sm bg-gray-900 text-white">This week</button>
                   </div>
                 </div>
 
@@ -383,7 +383,7 @@ export default function Dashboard() {
                   <input
                     type="text"
                     placeholder="Search activities"
-                    className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
 
@@ -411,8 +411,8 @@ export default function Dashboard() {
             </div>
 
             {/* Ticket Volume Trend (left, below KPI cards) */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-4 shadow-sm relative h-96 lg:col-span-3">
-              <div className="flex items-center justify-between relative z-10 mb-0">
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-96 lg:col-span-3 flex flex-col">
+              <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-gray-600" />
                   <h3 className="text-sm font-medium text-gray-700">Ticket Volume Trend</h3>
@@ -422,8 +422,8 @@ export default function Dashboard() {
                   <span>Last week</span>
                 </button>
               </div>
-              <div className="bg-white rounded-xl border border-gray-200 p-4 absolute left-4 right-4 bottom-4 top-14 flex flex-col overflow-hidden">
-                <div className="mb-4">
+              <div className="bg-white rounded-xl border border-gray-200 p-3 flex-1 flex flex-col overflow-hidden">
+                <div className="mb-3">
                   <div className="text-3xl font-bold text-gray-900 tracking-tight">4,790</div>
                   <div className="text-sm mt-1">
                     <span className="text-emerald-600 font-semibold">+8%</span>
@@ -448,7 +448,7 @@ export default function Dashboard() {
           </div>
 
           {/* SLA Monitoring Table */}
-          <div className="bg-gray-100 rounded-xl border border-gray-200 p-4 shadow-sm">
+          <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-md bg-gray-100 border border-gray-200 flex items-center justify-center">
@@ -474,8 +474,8 @@ export default function Dashboard() {
                 </button>
               </div>
             </div>
-            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden ">
-              <div className="overflow-x-auto px-2 md:px-2 p-2  ">
+            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden p-3 ">
+              <div className="overflow-x-auto px-2 md:px-2 p-2">
                   <table className="w-full border-separate border-spacing-0">
                     <thead className="bg-gray-100 text-gray-600 ">
                   <tr>
