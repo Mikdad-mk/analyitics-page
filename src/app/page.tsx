@@ -110,7 +110,7 @@ export default function Dashboard() {
       {/* Sidebar */}
       <div className="w-64 bg-gray-50 border-r border-gray-200 flex flex-col">
         {/* Logo */}
-        <div className="p-4 border-b border-gray-200">
+        <div className="p-4 border-b border-dashed border-gray-200">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
@@ -131,7 +131,7 @@ export default function Dashboard() {
             <input
               type="text"
               placeholder="Search anything"
-              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white placeholder:text-gray-400"
             />
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-400">⌘K</div>
           </div>
@@ -236,7 +236,7 @@ export default function Dashboard() {
         </div>
 
         {/* User Profile */}
-        <div className="p-3 border-t border-gray-200">
+        <div className="p-3 border-t border-gray-200 ">
           <div className="flex items-center justify-between bg-white border border-gray-200 rounded-xl px-3 py-2 shadow-sm">
             <div className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-700 text-sm font-medium">AH</div>
