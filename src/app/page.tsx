@@ -1,5 +1,6 @@
 'use client';
 
+import React, { useState } from 'react';
 import { 
   Search, 
   ChevronDown, 
@@ -105,10 +106,14 @@ const slaTickets = [
 ];
 
 export default function Dashboard() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row">
+      {isSidebarOpen && (
+        <div className="fixed inset-0 bg-black/20 z-30 md:hidden" onClick={() => setIsSidebarOpen(false)} />
+      )}
       {/* Sidebar */}
-      <div className="w-64 bg-gray-50 border-r border-gray-200 flex flex-col">
+      <div className={`bg-gray-50 md:border-r border-b border-gray-200 flex flex-col md:static fixed inset-y-0 left-0 z-40 w-64 md:w-64 transform transition-transform duration-200 md:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}> 
         {/* Logo */}
         <div className="p-4 border-b border-dashed border-gray-200">
           <div className="flex items-center justify-between">
@@ -118,7 +123,7 @@ export default function Dashboard() {
               </div>
               <span className="text-xl font-semibold text-gray-900">Kravio</span>
             </div>
-            <button className="p-2 rounded-lg hover:bg-gray-100 text-gray-600">
+            <button className="p-2 rounded-lg hover:bg-gray-100 text-gray-600" onClick={() => setIsSidebarOpen(false)}>
               <Menu className="w-5 h-5" />
             </button>
           </div>
@@ -141,7 +146,7 @@ export default function Dashboard() {
         <div className="flex-1 p-4 bg-gray-100">
           <nav className="space-y-2 ">
             <h3 className="px-3 text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-2">Main Navigation</h3>
-            <div className="bg-white text-gray-900 px-3 py-2 rounded-lg flex items-center space-x-2 border border-gray-200 shadow-sm">
+            <div className="bg-white text-gray-900 px-3 py-2 rounded-lg flex items-center space-x-2 border border-gray-200 shadow-sm cursor-pointer" onClick={() => setIsSidebarOpen(false)}>
               <Grid3X3 className="w-4 h-4" />
               <span className="font-medium">Overview</span>
             </div>
@@ -253,7 +258,7 @@ export default function Dashboard() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <div className="bg-white border-b border-gray-200 px-6 py-4">
+        <div className="bg-white border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4">
           {/* Top row: breadcrumb + icons */}
           <div className="flex items-center justify-between">
             <div className="flex items-center text-sm text-gray-600">
@@ -263,6 +268,9 @@ export default function Dashboard() {
               <span className="text-gray-900 font-medium">Dashboard</span>
             </div>
             <div className="flex items-center gap-2">
+              <button className="md:hidden p-2 hover:bg-gray-100 rounded-lg text-gray-600" onClick={() => setIsSidebarOpen(true)}>
+                <Menu className="w-4 h-4" />
+              </button>
               <button className="p-2 hover:bg-gray-100 rounded-lg text-gray-600">
                 <HelpCircle className="w-4 h-4" />
               </button>
@@ -274,9 +282,9 @@ export default function Dashboard() {
           {/* dotted divider */}
           <div className="mt-3 border-t border-dashed border-gray-200" />
           {/* Bottom row: title + controls */}
-          <div className="mt-3 flex items-center justify-between">
+          <div className="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <div>
-              <h1 className="text-2xl font-semibold text-gray-900">Hello, Achmad Hakim <span role="img" aria-label="wave">👋</span></h1>
+              <h1 className="text-xl sm:text-2xl font-semibold text-gray-900">Hello, Achmad Hakim <span role="img" aria-label="wave">👋</span></h1>
               <p className="text-gray-600 mt-1">Here are the latest insights from your customer interactions.</p>
             </div>
             <div className="flex items-center gap-2">
@@ -295,7 +303,7 @@ export default function Dashboard() {
         {/* Dashboard Content */}
         <div className="flex-1 p-6 space-y-6">
           {/* KPI + Latest Updates + Chart (single responsive grid) */}
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-6">
             {/* Current Tickets */}
             <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col">
               <div className="flex items-center justify-between mb-3">
@@ -305,7 +313,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <div className="bg-white rounded-xl border border-gray-200 p-3 flex-1 flex flex-col justify-end">
-                <div className="text-2xl font-bold text-gray-900 tracking-tight mb-2">3,484</div>
+                <div className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight mb-2">3,484</div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center text-sm">
                     <span className="text-emerald-600 font-semibold">+7.1%</span>
@@ -327,7 +335,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <div className="bg-white rounded-xl border border-gray-200 p-3 flex-1 flex flex-col justify-end">
-                <div className="text-2xl font-bold text-gray-900 tracking-tight mb-2">486</div>
+                <div className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight mb-2">486</div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center text-sm">
                     <span className="text-emerald-600 font-semibold">+2%</span>
@@ -349,7 +357,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <div className="bg-white rounded-xl border border-gray-200 p-3 flex-1 flex flex-col justify-end">
-                <div className="text-2xl font-bold text-gray-900 tracking-tight mb-2">92%</div>
+                <div className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight mb-2">92%</div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center text-sm">
                     <span className="text-red-600 font-semibold">-1.3%</span>
@@ -362,7 +370,7 @@ export default function Dashboard() {
               </div>
             </div>
             {/* Latest Updates (right column, spans two rows on lg) */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-96 lg:h-full flex flex-col lg:row-span-2">
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-[28rem] sm:h-96 lg:h-full flex flex-col lg:row-span-2">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-medium text-gray-700">Latest Updates</h3>
                 <button className="p-2 rounded-md hover:bg-gray-200/60 text-gray-600">
@@ -370,8 +378,8 @@ export default function Dashboard() {
                 </button>
               </div>
               <div className="bg-white rounded-xl border border-gray-200 p-3 flex-1 flex flex-col overflow-hidden">
-                <div className="mb-4">
-                  <div className="grid grid-cols-3 gap-2 w-full">
+              <div className="mb-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full">
                     <button className="w-full px-3 py-1.5 rounded-md text-sm font-medium bg-gray-900 text-white shadow-sm">Today</button>
                     <button className="w-full px-3 py-1.5 rounded-md text-sm bg-gray-900 text-white">Yesterday</button>
                     <button className="w-full px-3 py-1.5 rounded-md text-sm bg-gray-900 text-white">This week</button>
@@ -411,7 +419,7 @@ export default function Dashboard() {
             </div>
 
             {/* Ticket Volume Trend (left, below KPI cards) */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-96 lg:col-span-3 flex flex-col">
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-[22rem] sm:h-96 lg:col-span-3 flex flex-col">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-gray-600" />
