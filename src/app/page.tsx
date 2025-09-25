@@ -26,6 +26,7 @@ import {
   Menu,
   Grid3X3,
   LayoutGrid,
+  ClipboardList,
   Ticket,
   Puzzle,
   ChevronRight,
@@ -381,7 +382,7 @@ export default function Dashboard() {
               <div className="flex items-center justify-between mb-2 sm:mb-3 pl-2 sm:pl-3">
                 <h3 className="text-xs sm:text-sm font-medium text-gray-700">Latest Updates</h3>
                 <button className="p-1.5 sm:p-2 rounded-md hover:bg-gray-200/60 text-gray-600">
-                  <MoreHorizontal className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <ClipboardList className="w-3 h-3 sm:w-4 sm:h-4" />
                 </button>
               </div>
               <div className="bg-white rounded-xl border border-gray-200 p-2 sm:p-3 flex-1 flex flex-col overflow-hidden">
@@ -497,7 +498,7 @@ export default function Dashboard() {
                     <thead className="bg-gray-100 text-gray-600 ">
                   <tr>
                       <th className="px-3 sm:px-6 py-2 sm:py-3.5 text-left text-xs font-medium uppercase tracking-wider rounded-l-lg">
-                      <input type="checkbox" className="rounded border-gray-300" />
+                      <input type="checkbox" className="rounded-md border-gray-300 accent-gray-900" />
                     </th>
                       <th className="px-3 sm:px-6 py-2 sm:py-3.5 text-left text-xs font-medium uppercase tracking-wider">
                       <div className="flex items-center space-x-1">
@@ -554,7 +555,7 @@ export default function Dashboard() {
                   {slaTickets.map((ticket, index) => (
                     <tr key={index} className="hover:bg-gray-50">
                       <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
-                        <input type="checkbox" className="rounded border-gray-300" defaultChecked={index === 0} />
+                        <input type="checkbox" className="rounded-md border-gray-300 accent-gray-900" defaultChecked={index === 0} />
                       </td>
                       <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm font-medium text-gray-900">{ticket.id}</td>
                       <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-900">{ticket.subject}</td>
@@ -591,8 +592,8 @@ export default function Dashboard() {
                       <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
                         <div className="flex items-center space-x-2">
                           {ticket.status === 'In Review' && (
-                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-md border border-blue-200 bg-blue-50">
-                              <FileText className="w-3 h-3 text-blue-600" />
+                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-md ">
+                              <FileText className="w-4 h-4 text-blue-600" />
                             </span>
                           )}
                           {ticket.status === 'Delivered' && (
