@@ -15,7 +15,9 @@ import {
   Clock,
   AlertTriangle,
   CheckCircle,
+  Check,
   MoreHorizontal,
+  MoreVertical,
   Filter,
   Calendar,
   User,
@@ -149,7 +151,7 @@ export default function Dashboard() {
           <nav className="space-y-2 ">
             <h3 className="px-3 text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-2">Main Navigation</h3>
             <div className="bg-white text-gray-900 px-3 py-2 rounded-lg flex items-center space-x-2 border border-gray-200 shadow-sm cursor-pointer" onClick={() => setIsSidebarOpen(false)}>
-              <Grid3X3 className="w-4 h-4" />
+              <LayoutGrid className="w-4 h-4" />
               <span className="font-medium">Overview</span>
             </div>
             
@@ -231,7 +233,7 @@ export default function Dashboard() {
                 <span>Feedback</span>
               </div>
               <div className="px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer flex items-center space-x-2">
-                <HelpCircle className="w-4 h-4" />
+                <Bell className="w-4 h-4" />
                 <span>Help & Support</span>
               </div>
               <div className="px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer flex items-center space-x-2">
@@ -274,14 +276,14 @@ export default function Dashboard() {
                 <PanelLeft className="w-4 h-4" />
               </button>
               <button className="p-2 hover:bg-gray-100 rounded-lg text-gray-600">
-                <HelpCircle className="w-4 h-4" />
+                <Bell className="w-4 h-4" />
               </button>
               <button className="p-2 hover:bg-gray-100 rounded-lg text-gray-600">
-                <Bell className="w-4 h-4" />
+                <Settings className="w-4 h-4" />
               </button>
             </div>
           </div>
-          <div className="mt-2 border-t border-dashed border-gray-200" />
+          <div className="mt-5 border-t border-dashed border-gray-200" />
           {/* Bottom row: title + controls */}
           <div className="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <div>
@@ -295,7 +297,7 @@ export default function Dashboard() {
                 <ChevronDown className="w-4 h-4 text-gray-500" />
               </button>
               <button className="p-2 hover:bg-gray-100 rounded-lg text-gray-600">
-                <MoreHorizontal className="w-4 h-4" />
+                <MoreVertical className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -557,19 +559,25 @@ export default function Dashboard() {
                       <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm font-medium text-gray-900">{ticket.id}</td>
                       <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-900">{ticket.subject}</td>
                       <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
-                        <div className="flex items-center space-x-1 sm:space-x-2">
-                          <div className={`w-1 h-3 sm:h-4 rounded ${
-                            ticket.priority === 'High' ? 'bg-red-500' :
-                            ticket.priority === 'Medium' ? 'bg-orange-500' :
-                            'bg-yellow-500'
-                          }`}></div>
-                          <span className={`inline-flex px-1.5 sm:px-2 py-0.5 sm:py-1 text-xs font-semibold rounded-full ${
-                            ticket.priority === 'High' ? 'bg-red-100 text-red-800' :
-                            ticket.priority === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
-                            'bg-green-100 text-green-800'
-                          }`}>
-                            {ticket.priority}
-                          </span>
+                        <div className="flex items-center space-x-2">
+                          <div className="flex items-end gap-[2px]">
+                            <span className={`w-[3px] h-[6px] rounded-sm ${
+                              ticket.priority === 'High' ? 'bg-red-500' :
+                              ticket.priority === 'Medium' ? 'bg-amber-500' :
+                              'bg-yellow-400'
+                            }`}></span>
+                            <span className={`w-[3px] h-[8px] rounded-sm ${
+                              ticket.priority === 'High' ? 'bg-red-500' :
+                              ticket.priority === 'Medium' ? 'bg-amber-500' :
+                              'bg-yellow-400'
+                            }`}></span>
+                            <span className={`w-[3px] h-[10px] rounded-sm ${
+                              ticket.priority === 'High' ? 'bg-red-500' :
+                              ticket.priority === 'Medium' ? 'bg-amber-500' :
+                              'bg-yellow-400'
+                            }`}></span>
+                          </div>
+                          <span className="text-xs sm:text-sm text-gray-900">{ticket.priority}</span>
                         </div>
                       </td>
                       <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
@@ -581,17 +589,21 @@ export default function Dashboard() {
                         </div>
                       </td>
                       <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
-                        <div className="flex items-center space-x-1 sm:space-x-2">
-                          {ticket.status === 'In Review' && <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600" />}
-                          {ticket.status === 'Delivered' && <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />}
-                          {ticket.status === 'In Progress' && <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-600" />}
-                          <span className={`inline-flex px-1.5 sm:px-2 py-0.5 sm:py-1 text-xs font-semibold rounded-full ${
-                            ticket.status === 'In Review' ? 'bg-blue-100 text-blue-800' :
-                            ticket.status === 'Delivered' ? 'bg-green-100 text-green-800' :
-                            'bg-yellow-100 text-yellow-800'
-                          }`}>
-                            {ticket.status}
-                          </span>
+                        <div className="flex items-center space-x-2">
+                          {ticket.status === 'In Review' && (
+                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-md border border-blue-200 bg-blue-50">
+                              <FileText className="w-3 h-3 text-blue-600" />
+                            </span>
+                          )}
+                          {ticket.status === 'Delivered' && (
+                            <Check className="w-4 h-4 text-green-600" />
+                          )}
+                          {ticket.status === 'In Progress' && (
+                            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full   ">
+                              <Clock className="w-4 h-4 text-amber-600" />
+                            </span>
+                          )}
+                          <span className="text-xs sm:text-sm text-gray-900">{ticket.status}</span>
                         </div>
                       </td>
                       <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-900">{ticket.createdDate}</td>
