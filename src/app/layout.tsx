@@ -25,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="https://use.typekit.net/fvt6bnb.css" />
         <style dangerouslySetInnerHTML={{
           __html: `@import url("https://use.typekit.net/fvt6bnb.css");`

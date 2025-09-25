@@ -24,3 +24,8 @@ body {
   color: var(--foreground);
   font-family: 'adobe-clean', Arial, Helvetica, sans-serif;
 }
+
+/* Force light background to avoid black strip on some devices/browsers */
+html, body {
+  background-color: #ffffff !important;
+}

@@ -263,7 +263,7 @@ export default function Dashboard() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col bg-white">
         {/* Header */}
-        <div className="bg-white px-4 sm:px-6 py-3 sm:py-4">
+        <div className="bg-white px-4 sm:px-6 py-3 sm:py-4 max-w-screen-2xl mx-auto w-full">
           {/* Top row: breadcrumb + icons */}
           <div className="flex items-center justify-between">
             <div className="flex items-center text-sm text-gray-600">
@@ -305,9 +305,9 @@ export default function Dashboard() {
         </div>
 
         {/* Dashboard Content */}
-        <div className="flex-1 p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-6 bg-white">
+        <div className="flex-1 min-h-0 flex flex-col p-3 sm:p-4 md:p-5 lg:p-6 space-y-4 sm:space-y-5 md:space-y-6 bg-white max-w-screen-2xl mx-auto w-full">
           {/* Main Grid: KPI Cards + Ticket Volume Trend + Latest Updates (Vertical Span) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-4 lg:gap-6 bg-transparent auto-rows-max">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 bg-transparent auto-rows-max">
             {/* Current Tickets */}
             <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col h-auto sm:h-[160px] md:h-[180px] col-span-1">
               <div className="flex items-center justify-between mb-2 sm:mb-3 pl-2 sm:pl-3">
@@ -355,7 +355,7 @@ export default function Dashboard() {
             </div>
 
             {/* SLA Compliance Rate */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col h-auto sm:h-[160px] md:h-[180px] col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-1">
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col h-auto sm:h-[160px] md:h-[180px] col-span-1 sm:col-span-2 md:col-span-1 lg:col-span-1">
               <div className="flex items-center justify-between mb-2 sm:mb-3 pl-2 sm:pl-3">
                 <h3 className="text-xs sm:text-sm font-medium text-gray-700">SLA Compliance Rate</h3>
                 <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md flex items-center justify-center">
@@ -378,7 +378,7 @@ export default function Dashboard() {
             </div>
 
             {/* Latest Updates (Vertical Span - covers both rows) */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-[280px] sm:h-[350px] md:h-[400px] lg:h-[655px] flex flex-col col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-1 lg:row-span-2">
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-[280px] sm:h-[350px] md:h-[380px] lg:h-[655px] flex flex-col col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-1 lg:row-span-2">
               <div className="flex items-center justify-between mb-2 sm:mb-3 pl-2 sm:pl-3">
                 <h3 className="text-xs sm:text-sm font-medium text-gray-700">Latest Updates</h3>
                 <button className="p-1.5 sm:p-2 rounded-md hover:bg-gray-200/60 text-gray-600">
@@ -427,7 +427,7 @@ export default function Dashboard() {
             </div>
 
             {/* Ticket Volume Trend (smaller width) */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-[280px] sm:h-[350px] md:h-[400px] lg:h-[450px] flex flex-col col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3">
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-[280px] sm:h-[350px] md:h-[380px] lg:h-[450px] flex flex-col col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-3">
               <div className="flex items-center justify-between mb-2 sm:mb-3 pl-2 sm:pl-3">
                 <div className="flex items-center gap-1 sm:gap-2">
                   <Ticket className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600 rotate-[-45deg]" />
@@ -466,8 +466,8 @@ export default function Dashboard() {
           </div>
 
           {/* SLA Monitoring Table */}
-          <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mb-3 pl-2 sm:pl-3">
+          <div className="flex-1 min-h-0 flex flex-col bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mb-3 pl-2 sm:pl-3 flex-shrink-0">
               <div className="flex items-center gap-1 sm:gap-2">
                 <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-gray-100 border border-gray-200 flex items-center justify-center">
                   <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" />
@@ -492,74 +492,74 @@ export default function Dashboard() {
                 </button>
               </div>
             </div>
-            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden pt-1 ">
-              <div className="overflow-x-auto px-1.5 md:px-1.5 pt-0.5 pb-1">
+            <div className="flex-1 min-h-0 bg-white rounded-xl border border-gray-200 overflow-hidden pt-1">
+              <div className="h-full overflow-x-auto overflow-y-auto px-1.5 md:px-1.5 pt-0.5 pb-1">
                   <table className="w-full border-separate border-spacing-0">
                     <thead className="bg-gray-100 text-gray-600 ">
                   <tr>
                       <th className="px-3 sm:px-6 py-2 sm:py-3.5 text-left text-xs font-medium uppercase tracking-wider rounded-l-lg">
                       <input type="checkbox" className="rounded-md border-gray-300 accent-gray-900" />
                     </th>
-                      <th className="px-3 sm:px-6 py-2 sm:py-3.5 text-left text-xs font-medium uppercase tracking-wider">
+                      <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-3.5 text-left text-xs font-medium uppercase tracking-wider">
                       <div className="flex items-center space-x-1">
                         <span className="hidden sm:inline">Ticket ID</span>
                         <span className="sm:hidden">ID</span>
                         <ChevronDown className="w-3 h-3" />
                       </div>
                     </th>
-                      <th className="px-3 sm:px-6 py-2 sm:py-3.5 text-left text-xs font-medium uppercase tracking-wider">
+                      <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-3.5 text-left text-xs font-medium uppercase tracking-wider">
                       <div className="flex items-center space-x-1">
                         <span className="hidden md:inline">Subject</span>
                         <span className="md:hidden">Sub</span>
                         <ChevronDown className="w-3 h-3" />
                       </div>
                     </th>
-                      <th className="px-3 sm:px-6 py-2 sm:py-3.5 text-left text-xs font-medium uppercase tracking-wider">
+                      <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-3.5 text-left text-xs font-medium uppercase tracking-wider">
                       <div className="flex items-center space-x-1">
                         <span className="hidden sm:inline">Priority</span>
                         <span className="sm:hidden">P</span>
                         <ChevronDown className="w-3 h-3" />
                       </div>
                     </th>
-                      <th className="px-3 sm:px-6 py-2 sm:py-3.5 text-left text-xs font-medium uppercase tracking-wider">
+                      <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-3.5 text-left text-xs font-medium uppercase tracking-wider">
                       <div className="flex items-center space-x-1">
                         <span className="hidden md:inline">Assigned To</span>
                         <span className="md:hidden">Agent</span>
                         <ChevronDown className="w-3 h-3" />
                       </div>
                     </th>
-                      <th className="px-3 sm:px-6 py-2 sm:py-3.5 text-left text-xs font-medium uppercase tracking-wider">
+                      <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-3.5 text-left text-xs font-medium uppercase tracking-wider">
                       <div className="flex items-center space-x-1">
                         <span>Status</span>
                         <ChevronDown className="w-3 h-3" />
                       </div>
                     </th>
-                      <th className="px-3 sm:px-6 py-2 sm:py-3.5 text-left text-xs font-medium uppercase tracking-wider">
+                      <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-3.5 text-left text-xs font-medium uppercase tracking-wider">
                       <div className="flex items-center space-x-1">
                         <span className="hidden lg:inline">Created Date</span>
                         <span className="lg:hidden">Date</span>
                         <ChevronDown className="w-3 h-3" />
                       </div>
                     </th>
-                      <th className="px-3 sm:px-6 py-2 sm:py-3.5 text-left text-xs font-medium uppercase tracking-wider">
+                      <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-3.5 text-left text-xs font-medium uppercase tracking-wider">
                       <div className="flex items-center space-x-1">
                         <span className="hidden sm:inline">SLA Due</span>
                         <span className="sm:hidden">SLA</span>
                         <ChevronDown className="w-3 h-3" />
                       </div>
                     </th>
-                      <th className="px-3 sm:px-6 py-2 sm:py-3.5 text-left text-xs font-medium uppercase tracking-wider rounded-r-lg"></th>
+                      <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-3.5 text-left text-xs font-medium uppercase tracking-wider rounded-r-lg"></th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {slaTickets.map((ticket, index) => (
                     <tr key={index} className="hover:bg-gray-50">
-                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-3 md:py-4 whitespace-nowrap">
                         <input type="checkbox" className="rounded-md border-gray-300 accent-gray-900" defaultChecked={index === 0} />
                       </td>
-                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm font-medium text-gray-900">{ticket.id}</td>
-                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-900">{ticket.subject}</td>
-                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-3 md:py-4 whitespace-nowrap text-xs sm:text-sm font-medium text-gray-900">{ticket.id}</td>
+                      <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-3 md:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-900">{ticket.subject}</td>
+                      <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-3 md:py-4 whitespace-nowrap">
                         <div className="flex items-center space-x-2">
                           <div className="flex items-end gap-[2px]">
                             <span className={`w-[3px] h-[6px] rounded-sm ${
@@ -581,7 +581,7 @@ export default function Dashboard() {
                           <span className="text-xs sm:text-sm text-gray-900">{ticket.priority}</span>
                         </div>
                       </td>
-                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-3 md:py-4 whitespace-nowrap">
                         <div className="flex items-center space-x-1 sm:space-x-2">
                           <div className="w-5 h-5 sm:w-6 sm:h-6 bg-blue-600 rounded-full flex items-center justify-center">
                             <span className="text-white text-xs font-medium">{ticket.avatar}</span>
@@ -589,7 +589,7 @@ export default function Dashboard() {
                           <span className="text-xs sm:text-sm text-gray-900">{ticket.assignedTo}</span>
                         </div>
                       </td>
-                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-3 md:py-4 whitespace-nowrap">
                         <div className="flex items-center space-x-2">
                           {ticket.status === 'In Review' && (
                             <span className="inline-flex items-center justify-center w-5 h-5 rounded-md ">
@@ -607,8 +607,8 @@ export default function Dashboard() {
                           <span className="text-xs sm:text-sm text-gray-900">{ticket.status}</span>
                         </div>
                       </td>
-                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-900">{ticket.createdDate}</td>
-                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-3 md:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-900">{ticket.createdDate}</td>
+                      <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-3 md:py-4 whitespace-nowrap">
                         <span className={`text-xs sm:text-sm font-medium ${
                           ticket.slaDue.includes('h left') && parseInt(ticket.slaDue) <= 2 ? 'text-red-600' :
                           ticket.slaDue.includes('h left') ? 'text-yellow-600' :
@@ -617,7 +617,7 @@ export default function Dashboard() {
                           {ticket.slaDue}
                         </span>
                       </td>
-                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-3 md:py-4 whitespace-nowrap">
                         <button className="p-1 hover:bg-gray-100 rounded">
                           <MoreHorizontal className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" />
                         </button>
