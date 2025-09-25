@@ -451,7 +451,7 @@ export default function Dashboard() {
                 <div className="flex-1 min-h-0">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={ticketVolumeData} margin={{ right: 24 }}>
-                      <XAxis dataKey="day" axisLine={false} tickLine={false} interval={0} />
+                      <XAxis dataKey="day" axisLine={false} tickLine={false} interval="preserveStartEnd" minTickGap={8} tickMargin={6} tick={{ fontSize: 10 }} />
                       <YAxis orientation="right" axisLine={false} tickLine={false} width={34} />
                       <Bar dataKey="tickets" radius={[6, 6, 0, 0]}>
                         {ticketVolumeData.map((entry, index) => (
