@@ -28,7 +28,8 @@ import {
   ChevronRight,
   Zap,
   Timer,
-  Bell
+  Bell,
+  PanelLeft
 } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, LineChart, Line, Cell } from 'recharts';
 
@@ -108,14 +109,14 @@ const slaTickets = [
 export default function Dashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row">
+    <div className="min-h-screen bg-white flex flex-col md:flex-row">
       {isSidebarOpen && (
         <div className="fixed inset-0 bg-black/20 z-30 md:hidden" onClick={() => setIsSidebarOpen(false)} />
       )}
       {/* Sidebar */}
       <div className={`bg-gray-50 md:border-r border-b border-gray-200 flex flex-col md:static fixed inset-y-0 left-0 z-40 w-64 md:w-64 transform transition-transform duration-200 md:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}> 
         {/* Logo */}
-        <div className="p-4 border-b border-dashed border-gray-200">
+        <div className="p-4 bg-gray-100 border-b border-dashed border-gray-300">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
@@ -124,19 +125,19 @@ export default function Dashboard() {
               <span className="text-xl font-semibold text-gray-900">Kravio</span>
             </div>
             <button className="p-2 rounded-lg hover:bg-gray-100 text-gray-600" onClick={() => setIsSidebarOpen(false)}>
-              <Menu className="w-5 h-5" />
+              <PanelLeft className="w-5 h-5" />
             </button>
           </div>
         </div>
 
         {/* Search */}
-        <div className="p-4 border-b border-gray-200">
+        <div className="p-4 bg-gray-100">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
             <input
               type="text"
               placeholder="Search anything"
-              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white placeholder:text-gray-400"
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white placeholder:text-gray-500"
             />
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-400">⌘K</div>
           </div>
@@ -154,7 +155,7 @@ export default function Dashboard() {
             <div className="space-y-1">
               <div className="flex items-center justify-between px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">
                 <div className="flex items-center space-x-2">
-                  <Ticket className="w-4 h-4" />
+                  <Ticket className="w-4 h-4 rotate-[-30deg]" />
                   <span>Tickets</span>
                 </div>
                 <ChevronDown className="w-4 h-4" />
@@ -256,9 +257,9 @@ export default function Dashboard() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col bg-white">
         {/* Header */}
-        <div className="bg-white border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4">
+        <div className="bg-white px-4 sm:px-6 py-3 sm:py-4">
           {/* Top row: breadcrumb + icons */}
           <div className="flex items-center justify-between">
             <div className="flex items-center text-sm text-gray-600">
@@ -269,7 +270,7 @@ export default function Dashboard() {
             </div>
             <div className="flex items-center gap-2">
               <button className="md:hidden p-2 hover:bg-gray-100 rounded-lg text-gray-600" onClick={() => setIsSidebarOpen(true)}>
-                <Menu className="w-4 h-4" />
+                <PanelLeft className="w-4 h-4" />
               </button>
               <button className="p-2 hover:bg-gray-100 rounded-lg text-gray-600">
                 <HelpCircle className="w-4 h-4" />
@@ -279,8 +280,6 @@ export default function Dashboard() {
               </button>
             </div>
           </div>
-          {/* dotted divider */}
-          <div className="mt-3 border-t border-dashed border-gray-200" />
           {/* Bottom row: title + controls */}
           <div className="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <div>
@@ -301,11 +300,11 @@ export default function Dashboard() {
         </div>
 
         {/* Dashboard Content */}
-        <div className="flex-1 p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-6">
-          {/* KPI + Latest Updates + Chart (single responsive grid) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
+        <div className="flex-1 p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-6 bg-white">
+          {/* Main Grid: KPI Cards + Ticket Volume Trend + Latest Updates (Vertical Span) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 bg-transparent auto-rows-max">
             {/* Current Tickets */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col h-[140px] sm:h-[160px] md:h-[180px]">
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col h-[140px] sm:h-[160px] md:h-[180px] col-span-1">
               <div className="flex items-center justify-between mb-2 sm:mb-3 pl-2 sm:pl-3">
                 <h3 className="text-xs sm:text-sm font-medium text-gray-700">Current Tickets</h3>
                 <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md flex items-center justify-center">
@@ -328,7 +327,7 @@ export default function Dashboard() {
             </div>
 
             {/* Daily Avg Resolution */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col h-[140px] sm:h-[160px] md:h-[180px]">
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col h-[140px] sm:h-[160px] md:h-[180px] col-span-1">
               <div className="flex items-center justify-between mb-2 sm:mb-3 pl-2 sm:pl-3">
                 <h3 className="text-xs sm:text-sm font-medium text-gray-700">Daily Avg. Resolution</h3>
                 <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md flex items-center justify-center">
@@ -351,7 +350,7 @@ export default function Dashboard() {
             </div>
 
             {/* SLA Compliance Rate */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col h-[140px] sm:h-[160px] md:h-[180px]">
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col h-[140px] sm:h-[160px] md:h-[180px] col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-1">
               <div className="flex items-center justify-between mb-2 sm:mb-3 pl-2 sm:pl-3">
                 <h3 className="text-xs sm:text-sm font-medium text-gray-700">SLA Compliance Rate</h3>
                 <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md flex items-center justify-center">
@@ -372,8 +371,9 @@ export default function Dashboard() {
                 </div>
               </div>
             </div>
-            {/* Latest Updates (responsive across all devices) */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-[320px] sm:h-[400px] md:h-[450px] lg:h-[32rem] xl:h-[36rem] flex flex-col sm:col-span-2 md:col-span-3 lg:col-span-2 lg:row-span-2">
+
+            {/* Latest Updates (Vertical Span - covers both rows) */}
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-[280px] sm:h-[350px] md:h-[400px] lg:h-[655px] flex flex-col col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-1 lg:row-span-2">
               <div className="flex items-center justify-between mb-2 sm:mb-3 pl-2 sm:pl-3">
                 <h3 className="text-xs sm:text-sm font-medium text-gray-700">Latest Updates</h3>
                 <button className="p-1.5 sm:p-2 rounded-md hover:bg-gray-200/60 text-gray-600">
@@ -381,11 +381,11 @@ export default function Dashboard() {
                 </button>
               </div>
               <div className="bg-white rounded-xl border border-gray-200 p-2 sm:p-3 flex-1 flex flex-col overflow-hidden">
-              <div className="mb-3 sm:mb-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 sm:gap-2 lg:gap-3 w-full">
-                    <button className="w-full px-2 sm:px-3 py-1 sm:py-1.5 lg:px-4 lg:py-2 rounded-md text-xs sm:text-sm font-medium bg-gray-900 text-white shadow-sm">Today</button>
-                    <button className="w-full px-2 sm:px-3 py-1 sm:py-1.5 lg:px-4 lg:py-2 rounded-md text-xs sm:text-sm bg-gray-900 text-white">Yesterday</button>
-                    <button className="w-full px-2 sm:px-3 py-1 sm:py-1.5 lg:px-4 lg:py-2 rounded-md text-xs sm:text-sm bg-gray-900 text-white">This week</button>
+              <div className="mb-2 sm:mb-3 lg:mb-4">
+                  <div className="grid grid-cols-3 gap-1 sm:gap-2 lg:gap-3 w-full">
+                    <button className="w-full px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 lg:py-2 rounded-md text-xs sm:text-sm font-medium bg-gray-900 text-white shadow-sm whitespace-nowrap">Today</button>
+                    <button className="w-full px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 lg:py-2 rounded-md text-xs sm:text-sm bg-gray-900 text-white whitespace-nowrap">Yesterday</button>
+                    <button className="w-full px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 lg:py-2 rounded-md text-xs sm:text-sm bg-gray-900 text-white whitespace-nowrap">This week</button>
                   </div>
                 </div>
 
@@ -398,20 +398,20 @@ export default function Dashboard() {
                   />
                 </div>
 
-                <div className="text-xs sm:text-sm text-gray-600 mb-1 sm:mb-2">8 new activities today</div>
+                <div className="text-xs sm:text-sm text-gray-600 mb-1 sm:mb-2">6 new activities today</div>
                 <div className="border-t border-dashed border-gray-200 mb-2 sm:mb-3" />
 
-                <div className="relative flex-1 overflow-auto pr-1">
+                <div className="relative flex-1 overflow-hidden pr-1">
                   <div className="absolute left-3 sm:left-4 top-0 bottom-0 border-l border-dashed border-gray-200" />
-                  <div className="space-y-2 sm:space-y-3 lg:space-y-4">
+                  <div className="space-y-3 sm:space-y-4 lg:space-y-6">
                     {activities.map((activity, index) => (
-                      <div key={index} className="grid grid-cols-[auto_1fr_auto] gap-1.5 sm:gap-2 lg:gap-4 items-start">
+                      <div key={index} className="grid grid-cols-[auto_1fr_auto] gap-1.5 sm:gap-2 lg:gap-3 items-start">
                         <div className={`relative z-10 w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 rounded-full border flex items-center justify-center ${getActivityStyle(activity.type).bubbleBg} ${getActivityStyle(activity.type).bubbleBorder}`}>
                           <activity.icon className={`w-2.5 h-2.5 sm:w-3 sm:h-3 lg:w-4 lg:h-4 ${getActivityStyle(activity.type).icon}`} />
                         </div>
-                        <div className="min-w-0">
-                          <div className="text-xs sm:text-sm font-medium text-gray-900">{activity.type}</div>
-                          <p className="text-xs sm:text-sm text-gray-600 mt-0.5 sm:mt-1">{activity.description}</p>
+                        <div className="min-w-0 flex-1">
+                          <div className="text-xs sm:text-sm font-medium text-gray-900 truncate">{activity.type}</div>
+                          <p className="text-xs sm:text-sm text-gray-600 mt-0.5 sm:mt-1 overflow-hidden" style={{display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical'}}>{activity.description}</p>
                         </div>
                         <div className="text-xs text-gray-500 whitespace-nowrap mt-0.5">{activity.time}</div>
                       </div>
@@ -421,8 +421,8 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {/* Ticket Volume Trend (responsive chart) */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-[280px] sm:h-[350px] md:h-[400px] lg:h-[450px] flex flex-col sm:col-span-2 md:col-span-3 lg:col-span-3">
+            {/* Ticket Volume Trend (smaller width) */}
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-[280px] sm:h-[350px] md:h-[400px] lg:h-[450px] flex flex-col col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-3">
               <div className="flex items-center justify-between mb-2 sm:mb-3 pl-2 sm:pl-3">
                 <div className="flex items-center gap-1 sm:gap-2">
                   <Ticket className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600 rotate-[-45deg]" />
@@ -475,12 +475,12 @@ export default function Dashboard() {
                   <input
                     type="text"
                     placeholder="Ticket"
-                    className="pl-7 sm:pl-10 pr-2 sm:pr-4 py-1.5 sm:py-2 border border-gray-200 rounded-lg text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                    className="pl-7 sm:pl-10 pr-2 sm:pr-4 py-1.5 sm:py-2 border border-gray-200 text-black text-bold rounded-lg text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                   />
                 </div>
                 <button className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 border border-gray-200 rounded-lg text-xs sm:text-sm hover:bg-gray-50 bg-white">
                   <Filter className="w-3 h-3 sm:w-4 sm:h-4 text-gray-700" />
-                  <span className="hidden sm:inline">Filter</span>
+                  <span className="hidden sm:inline text-gray-800">Filter</span>
                 </button>
                 <button className="p-1.5 sm:p-2 hover:bg-gray-200/60 rounded-lg text-gray-600">
                   <MoreHorizontal className="w-3 h-3 sm:w-4 sm:h-4" />
