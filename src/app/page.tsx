@@ -150,7 +150,7 @@ export default function Dashboard() {
         {/* Navigation */}
         <div className="flex-1 p-4 bg-gray-100">
           <nav className="space-y-2 ">
-            <h3 className="px-3 text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-2">Main Navigation</h3>
+            <h3 className="text-[12px] font-semibold text-gray-500 uppercase tracking-wider mb-2">Main Navigation</h3>
             <div className="bg-white text-gray-900 px-3 py-2 rounded-lg flex items-center space-x-2 border border-gray-200 shadow-sm cursor-pointer" onClick={() => setIsSidebarOpen(false)}>
               <LayoutGrid className="w-4 h-4" />
               <span className="font-medium">Overview</span>
@@ -204,7 +204,7 @@ export default function Dashboard() {
 
           {/* Analytics & Insights */}
           <div className="mt-8">
-            <h3 className="px-3 text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-3">Analytics & Insights</h3>
+            <h3 className="text-[12px] font-semibold text-gray-500 uppercase tracking-wider mb-3">Analytics & Insights</h3>
             <nav className="space-y-1">
               <div className="px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer flex items-center space-x-2">
                 <BarChart3 className="w-4 h-4" />
@@ -227,7 +227,7 @@ export default function Dashboard() {
 
           {/* Support */}
           <div className="mt-8">
-            <h3 className="px-3 text-[10px] font-semibold text-gray-500 uppercase tracking-wider mb-3">Support</h3>
+            <h3 className="text-[12px] font-semibold text-gray-500 uppercase tracking-wider mb-3">Support</h3>
             <nav className="space-y-1">
               <div className="px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer flex items-center space-x-2">
                 <MessageSquare className="w-4 h-4" />
