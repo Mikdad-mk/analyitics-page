@@ -113,12 +113,12 @@ const slaTickets = [
 export default function Dashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
-    <div className="min-h-screen bg-white flex flex-col md:flex-row">
+    <div className={`${isSidebarOpen ? 'overflow-hidden md:overflow-visible' : ''} min-h-[100dvh] md:min-h-[100dvh] bg-white flex flex-col md:flex-row`}>
       {isSidebarOpen && (
         <div className="fixed inset-0 bg-black/20 z-30 md:hidden" onClick={() => setIsSidebarOpen(false)} />
       )}
       {/* Sidebar */}
-      <div className={`bg-gray-50 md:border-r border-b border-gray-200 flex flex-col md:static fixed inset-y-0 left-0 z-40 w-64 md:w-64 transform transition-transform duration-200 md:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}> 
+      <div className={`bg-gray-50 md:border-r border-b border-gray-200 flex flex-col overflow-y-auto overscroll-contain md:overscroll-auto md:overflow-y-auto md:static fixed inset-y-0 left-0 z-40 w-64 md:w-64 min-h-[100dvh] md:min-h-[100dvh] lg:min-h-[100dvh] transform transition-transform duration-200 md:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}> 
         {/* Logo */}
         <div className="p-4 bg-gray-100 border-b border-dashed border-gray-300">
           <div className="flex items-center justify-between">
@@ -261,21 +261,23 @@ export default function Dashboard() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col bg-white">
+      <div className="flex-1 flex flex-col bg-white min-h-[100dvh]">
         {/* Header */}
         <div className="bg-white px-4 sm:px-6 py-3 sm:py-4">
           {/* Top row: breadcrumb + icons */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center text-sm text-gray-600">
-              <LayoutGrid className="w-4 h-4 mr-2" />
-              <span>Overview</span>
-              <ChevronRight className="w-4 h-4 mx-2" />
-              <span className="text-gray-900 font-medium">Dashboard</span>
+            <div className="flex items-center">
+              <button className="sm:hidden p-2 -ml-2 rounded-lg hover:bg-gray-100 text-gray-600" onClick={() => setIsSidebarOpen(true)}>
+                <PanelLeft className="w-5 h-5" />
+              </button>
+              <div className="hidden sm:flex items-center text-sm text-gray-600">
+                <LayoutGrid className="w-4 h-4 mr-2" />
+                <span>Overview</span>
+                <ChevronRight className="w-4 h-4 mx-2" />
+                <span className="text-gray-900 font-medium">Dashboard</span>
+              </div>
             </div>
             <div className="flex items-center gap-2">
-              <button className="md:hidden p-2 hover:bg-gray-100 rounded-lg text-gray-600" onClick={() => setIsSidebarOpen(true)}>
-                <PanelLeft className="w-4 h-4" />
-              </button>
               <button className="p-2 hover:bg-gray-100 rounded-lg text-gray-600">
                 <Bell className="w-4 h-4" />
               </button>
@@ -292,9 +294,10 @@ export default function Dashboard() {
               <p className="text-gray-600 mt-1">Here are the latest insights from your customer interactions.</p>
             </div>
             <div className="flex items-center gap-2">
-              <button className="flex items-center gap-2 text-sm text-gray-700 border border-gray-200 rounded-md px-3 py-2 bg-white">
+              <button className="flex items-center gap-2 text-sm text-gray-700 border border-gray-200 rounded-md px-3 py-2 bg-white whitespace-nowrap">
                 <Calendar className="w-4 h-4 text-gray-500" />
-                <span>Last week</span>
+                <span className="hidden sm:inline">Last week</span>
+                <span className="sm:hidden">LW</span>
                 <ChevronDown className="w-4 h-4 text-gray-500" />
               </button>
               <button className="p-2 hover:bg-gray-100 rounded-lg text-gray-600">
@@ -378,7 +381,7 @@ export default function Dashboard() {
             </div>
 
             {/* Latest Updates (Vertical Span - covers both rows) */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-[280px] sm:h-[330px] md:h-[360px] lg:h-[655px] flex flex-col col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-1 lg:row-span-2">
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-[340px] sm:h-[330px] md:h-[360px] lg:h-[655px] flex flex-col col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-1 lg:row-span-2">
               <div className="flex items-center justify-between mb-2 sm:mb-3 pl-2 sm:pl-3">
                 <h3 className="text-xs sm:text-sm font-medium text-gray-700">Latest Updates</h3>
                 <button className="p-1.5 sm:p-2 rounded-md hover:bg-gray-200/60 text-gray-600">
