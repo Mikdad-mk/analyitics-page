@@ -249,7 +249,10 @@ export default function Dashboard() {
         <div className="p-3  bg-gray-100 ">
           <div className="flex items-center justify-between bg-white  rounded-xl px-3 py-2 shadow-sm">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-700 text-sm font-medium">AH</div>
+              <div className="relative w-8 h-8">
+                <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-700 text-sm font-medium">AH</div>
+                <span className="absolute -bottom-0 -right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white"></span>
+              </div>
               <div>
                 <div className="text-sm font-medium text-gray-900">Achmad Hakim</div>
                 <div className="text-xs text-gray-500">achmadhakim@gmail.com</div>
