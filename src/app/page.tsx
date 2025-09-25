@@ -303,7 +303,7 @@ export default function Dashboard() {
         {/* Dashboard Content */}
         <div className="flex-1 p-6 space-y-6">
           {/* KPI + Latest Updates + Chart (single responsive grid) */}
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6">
             {/* Current Tickets */}
             <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col">
               <div className="flex items-center justify-between mb-3 pl-3">
@@ -369,8 +369,8 @@ export default function Dashboard() {
                 </div>
               </div>
             </div>
-            {/* Latest Updates (right column, spans two rows on lg) */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-[28rem] sm:h-96 lg:h-full flex flex-col lg:row-span-2">
+            {/* Latest Updates (right column, spans two rows and two columns on lg) */}
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm h-[28rem] sm:h-96 lg:h-[32rem] xl:h-[36rem] flex flex-col lg:col-span-2 lg:row-span-2">
               <div className="flex items-center justify-between mb-3 pl-3">
                 <h3 className="text-sm font-medium text-gray-700">Latest Updates</h3>
                 <button className="p-2 rounded-md hover:bg-gray-200/60 text-gray-600">
@@ -379,10 +379,10 @@ export default function Dashboard() {
               </div>
               <div className="bg-white rounded-xl border border-gray-200 p-3 flex-1 flex flex-col overflow-hidden">
               <div className="mb-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full">
-                    <button className="w-full px-3 py-1.5 rounded-md text-sm font-medium bg-gray-900 text-white shadow-sm">Today</button>
-                    <button className="w-full px-3 py-1.5 rounded-md text-sm bg-gray-900 text-white">Yesterday</button>
-                    <button className="w-full px-3 py-1.5 rounded-md text-sm bg-gray-900 text-white">This week</button>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 lg:gap-3 w-full">
+                    <button className="w-full px-3 py-1.5 lg:px-4 lg:py-2 rounded-md text-sm font-medium bg-gray-900 text-white shadow-sm">Today</button>
+                    <button className="w-full px-3 py-1.5 lg:px-4 lg:py-2 rounded-md text-sm bg-gray-900 text-white">Yesterday</button>
+                    <button className="w-full px-3 py-1.5 lg:px-4 lg:py-2 rounded-md text-sm bg-gray-900 text-white">This week</button>
                   </div>
                 </div>
 
@@ -400,15 +400,15 @@ export default function Dashboard() {
 
                 <div className="relative flex-1 overflow-auto pr-1">
                   <div className="absolute left-4 top-0 bottom-0 border-l border-dashed border-gray-200" />
-                  <div className="space-y-4">
+                  <div className="space-y-3 lg:space-y-4">
                     {activities.map((activity, index) => (
-                      <div key={index} className="grid grid-cols-[auto_1fr_auto] gap-3 items-start">
-                        <div className={`relative z-10 w-8 h-8 rounded-full border flex items-center justify-center ${getActivityStyle(activity.type).bubbleBg} ${getActivityStyle(activity.type).bubbleBorder}`}>
-                          <activity.icon className={`w-4 h-4 ${getActivityStyle(activity.type).icon}`} />
+                      <div key={index} className="grid grid-cols-[auto_1fr_auto] gap-2 lg:gap-4 items-start">
+                        <div className={`relative z-10 w-7 h-7 lg:w-8 lg:h-8 rounded-full border flex items-center justify-center ${getActivityStyle(activity.type).bubbleBg} ${getActivityStyle(activity.type).bubbleBorder}`}>
+                          <activity.icon className={`w-3 h-3 lg:w-4 lg:h-4 ${getActivityStyle(activity.type).icon}`} />
                         </div>
                         <div className="min-w-0">
-                          <div className="text-sm font-medium text-gray-900 truncate">{activity.type}</div>
-                          <p className="text-sm text-gray-600 mt-1 truncate">{activity.description}</p>
+                          <div className="text-xs lg:text-sm font-medium text-gray-900">{activity.type}</div>
+                          <p className="text-xs lg:text-sm text-gray-600 mt-1">{activity.description}</p>
                         </div>
                         <div className="text-xs text-gray-500 whitespace-nowrap mt-0.5">{activity.time}</div>
                       </div>
