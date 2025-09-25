@@ -309,7 +309,7 @@ export default function Dashboard() {
           {/* Main Grid: KPI Cards + Ticket Volume Trend + Latest Updates (Vertical Span) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-4 lg:gap-6 bg-transparent auto-rows-max">
             {/* Current Tickets */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col h-[140px] sm:h-[160px] md:h-[180px] col-span-1">
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col h-auto sm:h-[160px] md:h-[180px] col-span-1">
               <div className="flex items-center justify-between mb-2 sm:mb-3 pl-2 sm:pl-3">
                 <h3 className="text-xs sm:text-sm font-medium text-gray-700">Current Tickets</h3>
                 <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md flex items-center justify-center">
@@ -332,7 +332,7 @@ export default function Dashboard() {
             </div>
 
             {/* Daily Avg Resolution */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col h-[140px] sm:h-[160px] md:h-[180px] col-span-1">
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col h-auto sm:h-[160px] md:h-[180px] col-span-1">
               <div className="flex items-center justify-between mb-2 sm:mb-3 pl-2 sm:pl-3">
                 <h3 className="text-xs sm:text-sm font-medium text-gray-700">Daily Avg. Resolution</h3>
                 <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md flex items-center justify-center">
@@ -355,7 +355,7 @@ export default function Dashboard() {
             </div>
 
             {/* SLA Compliance Rate */}
-            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col h-[140px] sm:h-[160px] md:h-[180px] col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-1">
+            <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col h-auto sm:h-[160px] md:h-[180px] col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-1">
               <div className="flex items-center justify-between mb-2 sm:mb-3 pl-2 sm:pl-3">
                 <h3 className="text-xs sm:text-sm font-medium text-gray-700">SLA Compliance Rate</h3>
                 <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md flex items-center justify-center">
