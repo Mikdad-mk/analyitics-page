@@ -307,7 +307,7 @@ export default function Dashboard() {
         {/* Dashboard Content */}
         <div className="flex-1 p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-6 bg-white">
           {/* Main Grid: KPI Cards + Ticket Volume Trend + Latest Updates (Vertical Span) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 bg-transparent auto-rows-max">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-4 lg:gap-6 bg-transparent auto-rows-max">
             {/* Current Tickets */}
             <div className="bg-gray-100 rounded-xl border border-gray-200 p-2 shadow-sm flex flex-col h-[140px] sm:h-[160px] md:h-[180px] col-span-1">
               <div className="flex items-center justify-between mb-2 sm:mb-3 pl-2 sm:pl-3">
@@ -388,9 +388,9 @@ export default function Dashboard() {
               <div className="bg-white rounded-xl border border-gray-200 p-2 sm:p-3 flex-1 flex flex-col overflow-hidden">
               <div className="mb-2 sm:mb-3 lg:mb-4">
                   <div className="grid grid-cols-3 gap-1 sm:gap-2 lg:gap-3 w-full">
-                    <button className="w-full px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 lg:py-2 rounded-md text-xs sm:text-sm font-medium bg-gray-900 text-white shadow-sm whitespace-nowrap">Today</button>
-                    <button className="w-full px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 lg:py-2 rounded-md text-xs sm:text-sm bg-gray-900 text-white whitespace-nowrap">Yesterday</button>
-                    <button className="w-full px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 lg:py-2 rounded-md text-xs sm:text-sm bg-gray-900 text-white whitespace-nowrap">This week</button>
+                    <button className="w-full px-1 sm:px-2 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-md text-[9px] sm:text-[9px] md:text-[9px] lg:text-[11px] font-normal leading-none bg-gray-900 text-white shadow-sm whitespace-nowrap">Today</button>
+                    <button className="w-full px-1 sm:px-2 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-md text-[9px] sm:text-[9px] md:text-[9px] lg:text-[11px] font-normal leading-none bg-gray-900 text-white whitespace-nowrap">Yesterday</button>
+                    <button className="w-full px-1 sm:px-2 lg:px-3 py-1 sm:py-1.5 lg:py-2 rounded-md text-[9px] sm:text-[9px] md:text-[9px] lg:text-[11px] font-normal leading-none bg-gray-900 text-white whitespace-nowrap">This week</button>
                   </div>
                 </div>
 
