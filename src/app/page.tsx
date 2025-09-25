@@ -23,6 +23,7 @@ import {
   Star,
   Menu,
   Grid3X3,
+  LayoutGrid,
   Ticket,
   Puzzle,
   ChevronRight,
@@ -263,7 +264,7 @@ export default function Dashboard() {
           {/* Top row: breadcrumb + icons */}
           <div className="flex items-center justify-between">
             <div className="flex items-center text-sm text-gray-600">
-              <Grid3X3 className="w-4 h-4 mr-2" />
+              <LayoutGrid className="w-4 h-4 mr-2" />
               <span>Overview</span>
               <ChevronRight className="w-4 h-4 mx-2" />
               <span className="text-gray-900 font-medium">Dashboard</span>
@@ -280,6 +281,7 @@ export default function Dashboard() {
               </button>
             </div>
           </div>
+          <div className="mt-2 border-t border-dashed border-gray-200" />
           {/* Bottom row: title + controls */}
           <div className="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <div>
@@ -308,7 +310,7 @@ export default function Dashboard() {
               <div className="flex items-center justify-between mb-2 sm:mb-3 pl-2 sm:pl-3">
                 <h3 className="text-xs sm:text-sm font-medium text-gray-700">Current Tickets</h3>
                 <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md flex items-center justify-center">
-                  <Ticket className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500" />
+                  <Ticket className="w-3 h-3 sm:w-4 sm:h-4 text-gray-500 rotate-[-30deg]" />
                 </div>
               </div>
               <div className="bg-white rounded-xl border border-gray-200 p-2 sm:p-3 flex-1 flex flex-col justify-end">
